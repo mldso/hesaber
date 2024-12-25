@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Expense extends Model
 {
-
-    protected $guarded = ['id'];
-
     /** @use HasFactory<\Database\Factories\ExpenseFactory> */
     use HasFactory;
+    
+    protected $guarded = ['id'];
 
     public function type(): BelongsTo
     {

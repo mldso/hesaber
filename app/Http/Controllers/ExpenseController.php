@@ -30,9 +30,9 @@ class ExpenseController extends Controller
         return redirect('/expenses');
     }
 
-    public function show(Expense $expense)
+    public function show(Expense $expense): void
     {
-        //
+
     }
 
     public function edit(Expense $expense)
@@ -42,7 +42,18 @@ class ExpenseController extends Controller
 
     public function update(Request $request, Expense $expense)
     {
-        //
+        $attributes = request()->validate([
+            'type_id' => 'numeric|required',
+            'asset_id' => 'numeric|required',
+            'amount' => 'numeric|required',
+            'start_at' => 'date|required',
+            'end_at' => 'date|required',
+            'comment' => 'string|nullable'
+        ]);
+
+        $expense->update($attributes);
+
+        return redirect('expenses');
     }
 
     public function destroy(Expense $expense)
