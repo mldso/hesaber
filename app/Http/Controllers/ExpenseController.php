@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asset;
 use App\Models\Expense;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,7 @@ class ExpenseController extends Controller
     {
         $expenses = Expense::with(['type', 'asset'])->get();
 
-        return view("expenses", compact("expenses"));
+        return view("expense.index", compact("expenses"));
     }
 
     public function store(Request $request)
@@ -30,14 +31,10 @@ class ExpenseController extends Controller
         return redirect('/expenses');
     }
 
-    public function show(Expense $expense): void
+    public function show(Expense $expense)
     {
-
-    }
-
-    public function edit(Expense $expense)
-    {
-        //
+        $expense->load(['type', 'asset']);
+        return view('expense.show', compact('expense'));
     }
 
     public function update(Request $request, Expense $expense)
@@ -53,11 +50,13 @@ class ExpenseController extends Controller
 
         $expense->update($attributes);
 
-        return redirect('expenses');
+        return response()->json($expense->toArray(), 201);
     }
 
     public function destroy(Expense $expense)
     {
-        //
+        $expense->delete();
+
+        return redirect('/expenses');
     }
 }

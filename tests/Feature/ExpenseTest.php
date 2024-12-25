@@ -27,6 +27,19 @@ class ExpenseTest extends TestCase
    } 
 
    /** @test */
+   public function user_can_view_an_expense(): void
+   {
+    $this->withoutExceptionHandling();
+
+    $expense = Expense::factory()->create();
+
+    $this->get('/expenses/' . (string) $expense->id)
+        ->assertSee($expense->asset->name)
+        ->assertSee($expense->type->name)
+        ->assertSee($expense->amount);
+   }
+
+   /** @test */
    public function user_can_create_expenses(): void
    {
         $this->withoutExceptionHandling();
@@ -80,5 +93,28 @@ class ExpenseTest extends TestCase
             'start_at' => $expense->start_at,
             'end_at' => $expense->end_at
         ]);
+    }
+
+    /** @test */
+    public function expense_can_be_deleted(): void
+    {
+        $this->withoutExceptionHandling();
+
+        $expense = Expense::factory()->create();
+
+        $this->delete('/expenses/' . (string) $expense->id)
+            ->assertRedirect('/expenses');
+
+        $this->assertDatabaseMissing('expenses', $expense->toArray());
+    }
+
+
+    /** @test */
+    public function expense_has_relationships(): void
+    {
+        $expense = Expense::factory()->create();
+
+        $this->assertInstanceOf(Asset::class, $expense->asset);
+        $this->assertInstanceOf(Type::class, $expense->type);
     }
 }
