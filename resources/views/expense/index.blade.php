@@ -1,6 +1,6 @@
 <x-layout>
-    <div class="rounded-lg border border-gray-200">
-        <div class="overflow-x-auto rounded-t-lg">
+    <div class="border border-gray-200 mb-3">
+        <div class="overflow-x-auto">
             <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
                 <thead class="text-left">
                     <tr>
@@ -112,3 +112,4 @@
         </div>
     </div>
 </x-layout>
+

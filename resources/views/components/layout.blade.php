@@ -8,6 +8,7 @@
   @vite('resources/css/app.css')
 </head>
 <body>
+  <x-header />
   <div class="container mx-auto pt-5">
   {{ $slot }}
   </div>
