@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-       Expense::factory(10)->create(); 
+       Expense::factory(100)->create(); 
     }
 }

@@ -10,7 +10,7 @@ class ExpenseController extends Controller
 {
     public function index()
     {
-        $expenses = Expense::with(['type', 'asset'])->paginate(5);
+        $expenses = Expense::with(['type', 'asset'])->paginate(15);
 
         return view("expense.index", compact("expenses"));
     }
