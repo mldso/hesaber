@@ -11,6 +11,8 @@ class Type extends Model
     /** @use HasFactory<\Database\Factories\TypeFactory> */
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function expenses(): HasMany
     {
         return $this->hasMany(Type::class);
