@@ -31,6 +31,12 @@ class ExpenseController extends Controller
         return redirect('/expenses');
     }
 
+    public function create()
+    {
+        return view("expense.create");
+    }
+
+
     public function show(Expense $expense)
     {
         $expense->load(['type', 'asset']);

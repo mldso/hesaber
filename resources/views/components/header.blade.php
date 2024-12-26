@@ -10,12 +10,13 @@
         </div>
   
         <div class="flex items-center gap-4">
-          <button
+          <a
+            href="{{ URL::route('expenses.create') }}"
             class="inline-block rounded bg-indigo-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring"
             type="button"
           >
             Add Expense
-          </button>
+          </a>
         </div>
       </div>
     </div>

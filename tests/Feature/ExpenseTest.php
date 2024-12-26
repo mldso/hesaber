@@ -44,6 +44,8 @@ class ExpenseTest extends TestCase
    {
         $this->withoutExceptionHandling();
 
+        $this->get('/expenses/create')->assertStatus(200);
+
         $attributes = Expense::factory()->raw();
 
         $this->post('/expenses', $attributes)
