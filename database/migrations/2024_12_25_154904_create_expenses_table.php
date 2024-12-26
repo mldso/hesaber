@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('asset_id');
             $table->float('amount');
-            $table->date('start_at');
-            $table->date('end_at');
+            $table->date('start_at')->nullable();
+            $table->date('end_at')->nullable();
             $table->text('comment')->nullable();
             $table->timestamps();
         });
