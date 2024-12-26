@@ -11,6 +11,8 @@ class Asset extends Model
     /** @use HasFactory<\Database\Factories\AssetFactory> */
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function expenses(): HasMany
     {
         return $this->hasMany(Type::class);
