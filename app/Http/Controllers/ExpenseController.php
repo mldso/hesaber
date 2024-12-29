@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Asset;
 use App\Models\Expense;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
 {
     public function index()
     {
-        $expenses = Expense::with(['type', 'asset'])->paginate(15);
+        $expenses = Expense::with(['type', 'asset'])->orderBy('created_at', 'DESC')->paginate(5);
 
         return view("expense.index", compact("expenses"));
     }
@@ -33,7 +34,10 @@ class ExpenseController extends Controller
 
     public function create()
     {
-        return view("expense.create");
+        $types = Type::all();
+        $assets = Asset::all();
+
+        return view("expense.create", compact("types","assets"));
     }
 
 
