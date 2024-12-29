@@ -19,12 +19,12 @@ class ExpenseController extends Controller
     public function store(Request $request)
     {
         $attributes = request()->validate([
-            'type_id' => 'numeric|required',
-            'asset_id' => 'numeric|required',
-            'amount' => 'numeric|required',
-            'start_at' => 'date|required',
-            'end_at' => 'date|required',
-            'comment' => 'string|nullable'
+            'type_id' => 'required|numeric',
+            'asset_id' => 'required|numeric',
+            'amount' => 'required|numeric',
+            'start_at' => 'nullable|date',
+            'end_at' => 'nullable|date',
+            'comment' => 'nullable|string'
         ]);
 
         Expense::create($attributes);

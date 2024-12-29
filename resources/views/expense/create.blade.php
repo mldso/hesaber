@@ -20,7 +20,7 @@
               </select>
 
               @error('asset_id')
-                <p class="text-red-200">{{ $message }}</p>
+                <p class="text-red-700">{{ $message }}</p>
               @enderror
             </div>
 
@@ -35,7 +35,7 @@
               </select>
 
               @error('type_id')
-                <p class="text-red-200">{{ $message }}</p>
+                <p class="text-red-700">{{ $message }}</p>
               @enderror
             </div>
 
@@ -45,7 +45,7 @@
                 <input name="amount" type="number" class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm mt-1.5" step=0.01 value="{{ old('amount') }}" />
 
                   @error('amount')
-                <p class="text-red-200">{{ $message }}</p>
+                <p class="text-red-700">{{ $message }}</p>
               @enderror
               </div>
             </div>
@@ -59,7 +59,7 @@
               </div>
 
               @error('start_at')
-                <p class="text-red-200">{{ $message }}</p>
+                <p class="text-red-700">{{ $message }}</p>
               @enderror
             </div>
 
@@ -71,7 +71,7 @@
               </div>
 
               @error('end_at')
-                <p class="text-red-200">{{ $message }}</p>
+                <p class="text-red-700">{{ $message }}</p>
               @enderror
             </div>
 
@@ -82,7 +82,7 @@
                 <textarea name="comment" rows="4" class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm mt-1.5"  value="{{ old('comment') }}"></textarea>
               </div>
               @error('comment')
-                <p class="text-red-200">{{ $message }}</p>
+                <p class="text-red-700">{{ $message }}</p>
               @enderror
             </div>
 

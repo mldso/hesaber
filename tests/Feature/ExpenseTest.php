@@ -119,4 +119,32 @@ class ExpenseTest extends TestCase
         $this->assertInstanceOf(Asset::class, $expense->asset);
         $this->assertInstanceOf(Type::class, $expense->type);
     }
+
+    /** @test */
+    public function create_without_required_parameters_has_errors(): void
+    {
+        foreach(['asset_id', 'type_id', 'amount'] as $parameter) {
+            $attributes = Expense::factory()->raw([$parameter => null]);
+
+            $this->post('expenses', $attributes)
+            ->assertStatus(302)
+            ->assertSessionHasErrors($parameter);
+
+            $this->assertDatabaseMissing('expenses', $attributes);
+        }
+    }
+
+        /** @test */
+        public function create_without_optional_parameters_has_no_errors(): void
+        {
+            foreach(['start_at', 'end_at', 'comment'] as $parameter) {
+                $attributes = Expense::factory()->raw([$parameter => null]);
+    
+                $this->post('expenses', $attributes)
+                ->assertSessionHasNoErrors()
+                ->assertRedirect('/expenses');
+
+                $this->assertDatabaseHas('expenses', $attributes);
+            }
+        }
 }
