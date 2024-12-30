@@ -47,15 +47,23 @@ class ExpenseController extends Controller
         return view('expense.show', compact('expense'));
     }
 
+    public function edit(Expense $expense)
+    {
+        $types = Type::all();
+        $assets = Asset::all();
+
+        return view('expense.edit', compact('expense', 'types', 'assets'));
+    }
+
     public function update(Request $request, Expense $expense)
     {
         $attributes = request()->validate([
-            'type_id' => 'numeric|required',
-            'asset_id' => 'numeric|required',
-            'amount' => 'numeric|required',
-            'start_at' => 'date|required',
-            'end_at' => 'date|required',
-            'comment' => 'string|nullable'
+            'type_id' => 'required|numeric',
+            'asset_id' => 'required|numeric',
+            'amount' => 'required|numeric',
+            'start_at' => 'nullable|date',
+            'end_at' => 'nullable|date',
+            'comment' => 'nullable|string'
         ]);
 
         $expense->update($attributes);

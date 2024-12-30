@@ -15,7 +15,7 @@
               <select name="asset_id" class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm p-4">
                 <option value="">Please select</option>
                 @foreach ($assets as $asset)
-                  <option value="{{ $asset->id }}" {{ old('asset_id') == $asset->id ? 'selected' : '' }}>{{ $asset->name }}</option>
+                  <option value="{{ $asset->id }}" {{ $asset->id == $expense->asset_id ? 'selected' : '' }}>{{ $asset->name }}</option>
                 @endforeach
               </select>
 
@@ -30,7 +30,7 @@
               <select name="type_id" class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm p-4">
                 <option value="">Please select</option>
                 @foreach ($types as $type)
-                  <option value="{{ $type->id }}" {{ old('type_id') == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
+                  <option value="{{ $type->id }}" {{ $expense->type_id == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
                 @endforeach
               </select>
 
@@ -42,7 +42,7 @@
             <div class="mt-4">
               <label>Amount:</label>
               <div class="relative">
-                <input name="amount" type="number" class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm mt-1.5" step=0.01 value="{{ old('amount') }}" />
+                <input name="amount" type="number" class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm mt-1.5" step=0.01 value="{{ $expense->amount }}" />
 
                   @error('amount')
                 <p class="text-red-700">{{ $message }}</p>
@@ -55,7 +55,7 @@
               <label>Start At:</label>
 
               <div class="relative">
-                <input name="start_at" type="date" class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm mt-1.5"  value="{{ old('start_at') }}" />
+                <input name="start_at" type="date" class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm mt-1.5"  value="{{ $expense->start_at }}" />
               </div>
 
               @error('start_at')
@@ -67,7 +67,7 @@
               <label>End At:</label>
 
               <div class="relative">
-                <input name="end_at" type="date" class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm mt-1.5"  value="{{ old('end_at') }}" />
+                <input name="end_at" type="date" class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm mt-1.5"  value="{{ $expense->end_at }}" />
               </div>
 
               @error('end_at')
@@ -79,7 +79,7 @@
               <label>Comment:</label>
 
               <div class="relative">
-                <textarea name="comment" rows="4" class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm mt-1.5"  value="{{ old('comment') }}">{{ old('comment') }}</textarea>
+                <textarea name="comment" rows="4" class="w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm mt-1.5"  value="{{ $expense->comment }}">{{ $expense->comment }}</textarea>
               </div>
               @error('comment')
                 <p class="text-red-700">{{ $message }}</p>

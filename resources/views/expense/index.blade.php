@@ -10,6 +10,7 @@
             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Start At</th>
             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">End At</th>
             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Comment</th>
+            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-300">🔗</th>
           </tr>
         </thead>
 
@@ -22,6 +23,9 @@
               <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $expense->start_at }}</td>
               <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $expense->end_at }}</td>
               <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $expense->comment }}</td>
+              <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                <a href="/expenses/{{ $expense->id }}/edit">🔗</a>
+              </td>
             </tr>
           @endforeach
         </tbody>

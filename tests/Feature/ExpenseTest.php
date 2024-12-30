@@ -147,4 +147,29 @@ class ExpenseTest extends TestCase
                 $this->assertDatabaseHas('expenses', $attributes);
             }
         }
+
+    /** @test */
+   public function user_can_edit_an_expense(): void
+   {
+        $this->withoutExceptionHandling();
+
+        $expense = Expense::factory()->create();
+
+        $this->get('/expenses/' . (string) $expense->id . '/edit')
+            ->assertStatus(200);
+
+        $expense_changes = Expense::factory()->raw(['id' => null]);
+
+        $this->put('/expenses/' . (string) $expense->id, $expense_changes);
+
+        $this->assertDatabaseHas('expenses', [
+            'id'=> $expense->id,
+            'amount' => $expense_changes['amount'],
+            'start_at' => $expense_changes['start_at'],
+            'end_at' => $expense_changes['end_at'],
+            'comment' => $expense_changes['comment'],
+            'asset_id' => $expense_changes['asset_id'],
+            'type_id' => $expense_changes['type_id']
+        ]);
+    }
 }
